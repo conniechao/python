@@ -1,51 +1,33 @@
 文章来源：Python3.9 » 文档 » Python 标准库 » 
-https://docs.python.org/zh-cn/3.9/tutorial/stdlib2.html#decimal-floating-point-arithmetic
+十进制浮点运算https://docs.python.org/zh-cn/3.9/tutorial/stdlib2.html#decimal-floating-point-arithmetic
+decimal --- 十进制定点和浮点运算https://docs.python.org/zh-cn/3.9/library/decimal.html#decimal.ROUND_DOWN
 
-十进制浮点运算
-
+使用场合：
 decimal 模块提供了一种 Decimal 数据类型用于十进制浮点运算。 相比内置的 float 二进制浮点实现，该类特别适用于
-
 •财务应用和其他需要精确十进制表示的用途，
-
 •控制精度，
-
 •控制四舍五入以满足法律或监管要求，
-
 •跟踪有效小数位，或
-
 •用户期望结果与手工完成的计算相匹配的应用程序。
 
+常用方法：
+quantize() 方法将数字四舍五入为固定指数。 此方法对于将结果舍入到固定的位置的货币应用程序非常有用：
+>>> Decimal('7.325').quantize(Decimal('.01'), rounding=ROUND_DOWN)
+Decimal('7.32')
+>>> Decimal('7.325').quantize(Decimal('1.'), rounding=ROUND_UP)
+Decimal('8')
 
-例如，使用十进制浮点和二进制浮点数计算70美分手机和5％税的总费用，会产生的不同结果。如果结果四舍五入到最接近的分数差异会更大:
-
-
->>>>>> from decimal import *
->>> round(Decimal('0.70') * Decimal('1.05'), 2)
-Decimal('0.74')
->>> round(.70 * 1.05, 2)
-0.73
-
-
-Decimal 表示的结果会保留尾部的零，并根据具有两个有效位的被乘数自动推出四个有效位。 Decimal 可以模拟手工运算来避免当二进制浮点数无法精确表示十进制数时会导致的问题。
-
+其他：
+Decimal 表示的结果会保留尾部的零，并根据具有两个有效位的被乘数自动推出四个有效位。 
+Decimal 可以模拟手工运算来避免当二进制浮点数无法精确表示十进制数时会导致的问题。
 精确表示特性使得 Decimal 类能够执行对于二进制浮点数来说不适用的模运算和相等性检测:
 
+通常使用小数的开始是导入模块，使用 getcontext() 查看当前上下文，并在必要时为精度、舍入或启用的陷阱设置新值:
+>>>>>> from decimal import *
+>>> getcontext()
+Context(prec=28, rounding=ROUND_HALF_EVEN, Emin=-999999, Emax=999999,
+        capitals=1, clamp=0, flags=[], traps=[Overflow, DivisionByZero,
+        InvalidOperation])
+>>> getcontext().prec = 7  
 
->>>>>> Decimal('1.00') % Decimal('.10')
-Decimal('0.00')
->>> 1.00 % 0.10
-0.09999999999999995
-
->>> sum([Decimal('0.1')]*10) == Decimal('1.0')
-True
->>> sum([0.1]*10) == 1.0
-False
-
-
-decimal 模块提供了运算所需要的足够精度:
-
-
->>>>>> getcontext().prec = 36
->>> Decimal(1) / Decimal(7)
-Decimal('0.142857142857142857142857142857142857')
-
+新 Decimal 的重要性仅由输入的位数决定。 上下文精度和舍入仅在算术运算期间发挥作用
