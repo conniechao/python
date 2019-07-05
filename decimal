@@ -12,10 +12,12 @@ decimal 模块提供了一种 Decimal 数据类型用于十进制浮点运算。
 
 常用方法：
 quantize() 方法将数字四舍五入为固定指数。 此方法对于将结果舍入到固定的位置的货币应用程序非常有用：
->>> Decimal('7.325').quantize(Decimal('.01'), rounding=ROUND_DOWN)
-Decimal('7.32')
->>> Decimal('7.325').quantize(Decimal('1.'), rounding=ROUND_UP)
-Decimal('8')
+>>> Decimal('7.325').quantize(Decimal('1.'), rounding=ROUND_DOWN)
+Decimal('7')
+>>> Decimal('7.355').quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)  #四舍五入
+Decimal('7.36')
+>>> Decimal('7.354').quantize(Decimal('0.01'), rounding=ROUND_UP)  #一直入
+Decimal('7.36')
 
 其他：
 Decimal 表示的结果会保留尾部的零，并根据具有两个有效位的被乘数自动推出四个有效位。 
