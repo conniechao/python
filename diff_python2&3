@@ -2,7 +2,7 @@
 
 1.默认编码
 python3：默认UTF-8，支持中文日文字符
-python2：默认ASCII，不支持中文，需要添加 #coding:utf-8，源文件也要存为utf-8
+python2：默认ASCII，不支持中文，需要添加中文注释 #coding=(or :)utf-8，源文件也要存为utf-8
 
 2. print
 python3：print()是内置函数
@@ -21,7 +21,7 @@ python3：整数/整数=浮点数
 python2：整数/整数=整数
 
 3.range()
-python3：合并为一个range()函数
+python3：整合为一个range()函数
 python2：range()、xrange()
 
 7.
