@@ -1,0 +1,49 @@
+#The differences between python2.x and python3.x.
+
+1.默认编码
+python3：默认UTF-8，支持中文日文字符
+python2：默认ASCII，不支持中文，需要添加 #coding:utf-8，源文件也要存为utf-8
+
+2. print
+python3：print()是内置函数
+python2：print是关键字
+
+3.整型
+python3：支持各种整型
+python2：大整数为long整型
+
+4.数值使用下划线_
+python3：数值可用下划线，a = 1_000.999_999
+python2：不可用
+
+5.除法
+python3：整数/整数=浮点数
+python2：整数/整数=整数
+
+3.range()
+python3：合并为一个range()函数
+python2：range()、xrange()
+
+7.
+python3：
+python2：
+
+8.
+python3：
+python2：
+
+9.
+python3：
+python2：
+
+10.
+python3：
+python2：
+
+11.
+python3：
+python2：
+
+12.
+python3：
+python2：
