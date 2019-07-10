@@ -40,12 +40,17 @@ python简介:
          区分大小写
          避免开头用下划线"_"
 
-print：
-print(a,b,c, sep='~'， end="")
-输出结果默认空格间隔，可通过sep参数设置
-end默认换行"\n"，end=""不换行
-
 关键字/保留字：
 import keyword
 keyword.kwlist
 
+输入input()：
+variable = input()
+python3：输入的数字和字符都作为字符串读取，数值需要转换a = int(input())
+python2:数值可直接输入作为数值读取，字符串需要引号。
+
+输出print()：
+
+print(a,b,c, sep='~'， end="")
+输出结果默认空格间隔，可通过sep参数设置
+end默认换行"\n"，end=""不换行
