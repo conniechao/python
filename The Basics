@@ -1,7 +1,7 @@
 python简介:
 发音：/'paɪθɑn/ 蟒
 发明：1989年荷兰人Guido van Rossum
-特点：跨平台、开源、免费、面向对象、解释型、高级编程语言。
+特点：跨平台、开源、免费、面向对象、解释型、高级编程语言，动态类型语言，弱类型语言。
 
 编写规范：
 采用PEP8（Python Enhancement Proposal）Python增强建议书
