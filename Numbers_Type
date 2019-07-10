@@ -26,8 +26,8 @@ a = 1 + 2j
 2. Strings字符串
 A string is a sequence of characters.
 连续的字符序列，不可变序列
-单行：用单引号 or 双引号括起来，a = 'string', b = "string"
-多行：用三引号括起来
+单行：用单引号Single Quotes or 双引号Double Quotes括起来，a = 'string', b = "string"
+多行：用三引号Triple Quotes(英 /k'wəʊts/)括起来
      c = '''string,
      string'''
 支持转义字符：\续行符, \n换行符, \0空, \", \', \\反斜杠
