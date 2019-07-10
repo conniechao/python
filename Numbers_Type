@@ -45,7 +45,7 @@ int(x)
 float(x)
 complex(real[,imag]):创建复数
 str(x)
-repr(x):转为表达式字符串
+repr(x):转为表达式字符串，如需要输出表达式或者变量时
 eval(str):计算字符串中的有效表达式，返回一个对象
 *chr(x):将整数转为字符
 *ord(c):将字符转为整数值
