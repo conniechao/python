@@ -10,7 +10,7 @@ python2：print是关键字
 
 3.整型
 python3：支持各种整型
-python2：大整数为long整型
+python2：整数较大时，自动在最后添加字母L，为长整型long
 
 4.数值使用下划线_
 python3：数值可用下划线，a = 1_000.999_999
@@ -24,9 +24,9 @@ python2：整数/整数=整数
 python3：整合为一个range()函数
 python2：range()、xrange()
 
-7.
-python3：
-python2：
+7.八进制(octal number)
+python3：必须以0o or 0O 开头的整数，由0~7组成，“逢八进一”
+python2：可以0开头
 
 8.
 python3：
