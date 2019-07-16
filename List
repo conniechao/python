@@ -63,7 +63,27 @@ if l1.count("a")>0:
 l1.count("a")精确匹配
 l1.index("a")精确匹配
 sum(l2):l2各元素之和
-l2.sorted()
+l2.sort(key=l2.lower, reverse=Flase):默认升序，先排大写字母，再排小写字母，reverse=True降序，key=l2.lower不区分大小写，不支持中文
+sorted(l2,key=l2.lower, reverse=Flase):默认升序，先排大写字母，再排小写字母，建立副本，不改变原列表顺序
+
+(8)列表推导式
+指定范围列表：
+import random
+l5 = [random.randint(10, 100) for i in range(5)]
+指定需求列表：l6 = [x*x for x in l2]
+符合条件列表：l7 = [x for x in l2 if x > 3]
+
+(9)二维列表
+每个元素都是列表，包含列表的列表
+a. 直接定义：arr = [[0, 1, 2], [0, 1, 2], [0, 1, 2]]
+b. for循环创建：
+arr = []
+for i in range(3):
+    arr.append([])
+    for j in range(3):
+        arr[i].append(j)
+c. 列表推导式创建：
+arr =[[j for j in range(3)] for i in range(3)]
 
 
 
