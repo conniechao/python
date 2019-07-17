@@ -32,9 +32,9 @@ python2：可以0开头
 python3：输入的数字和字符都作为字符串读取，数值需要转换a = int(input())
 python2:输入必须符合语法，数值可直接输入作为数值读取，字符串需要引号。raw_input()函数与python3 input()功能相同
 
-9.
-python3：
-python2：
+9.sort()
+python3：不可传入函数
+python2：可传入比较大小的函数，l1.sort(len_compare)
 
 10.
 python3：
