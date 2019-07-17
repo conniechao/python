@@ -22,7 +22,7 @@ python2：整数/整数=整数
 
 3.range()
 python3：整合为一个range()函数
-python2：range()、xrange()
+python2：range()返回列表对象，xrange()与python3的range()基本相同
 
 7.八进制(octal number)
 python3：必须以0o or 0O 开头的整数，由0~7组成，“逢八进一”
