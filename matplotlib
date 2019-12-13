@@ -1,0 +1,5 @@
+
+
+1. plt.imshow()与plt.show()
+plt.imshow()：函数负责对图像进行处理，并显示其格式，但是不能显示图像。
+plt.show()：显示图像。
