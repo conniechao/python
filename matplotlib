@@ -1,5 +1,18 @@
+##import matplotlib.pyplot as plt
 
-
-1. plt.imshow()与plt.show()
+##plt.imshow()与plt.show()
 plt.imshow()：函数负责对图像进行处理，并显示其格式，但是不能显示图像。
 plt.show()：显示图像。
+
+
+##plt.figure
+figure(num=None, figsize=None, dpi=None, facecolor=None, edgecolor=None, frameon=True)
+  num:图像编号或名称
+	figsize:指定宽和高，英寸
+	dpi分辨率，即每英寸多少个像素，缺省值为80
+	facecolor:背景颜色
+	edgecolor:边框颜色
+	frameon:是否显示边框
+
+##
+
