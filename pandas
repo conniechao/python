@@ -1,0 +1,16 @@
+##csv
+label_data_pd = pd.read_csv('data/a.csv')
+label_data = label_data_pd[['id', 'label', 'x', 'y', 'value']]
+
+##行[1,3,5]列['a','c']筛选
+df.loc[[1,3,5],['a','c']]
+
+##特定值
+df.loc[(df["name"].str.contains('Z'))|(df['Cost'].str.strip('$').astype(float) > 20),:])
+
+##多条件
+x = label_data['x'].values
+y = label_data['y'].values
+for xy in zip(x, y):
+    plt.annotate("(%s)" % str(label_data['value'][(label_data['x'] == xy[0]) & (label_data['y'] == xy[1])].values[0]),
+                     xy=xy, xytext=(-6, 6), textcoords='offset points')
