@@ -14,5 +14,60 @@ figure(num=None, figsize=None, dpi=None, facecolor=None, edgecolor=None, frameon
 	edgecolor:边框颜色
 	frameon:是否显示边框
 
-##
+
+##图例
+plt.legend(['OK', 'NG'], loc='best')
+ 'best' : 0,          
+ 'upper right'  : 1,
+ 'upper left'   : 2,
+ 'lower left'   : 3,
+ 'lower right'  : 4,
+ 'right'        : 5,
+ 'center left'  : 6,
+ 'center right' : 7,
+ 'lower center' : 8,
+ 'upper center' : 9,
+ 'center'       : 10,
+
+
+##去掉坐标轴
+plt.axis('off')  
+
+
+##去掉刻度
+plt.xticks([]) 
+plt.yticks([])
+
+
+##标记
+plt.annotate(s='str' ,xy=(x,y) ,xytext=(l1,l2) ,..)
+
+
+##标题
+str_title = str(index)+' '+str(label_data['label'][label_data['id'] == index].values[0])
+plt.title("%s" % str_title, fontsize=9, x =-0.6, y = 0.1) 标题放到左边
+
+
+##去掉边框线
+ax = plt.subplot(1,1,1)
+ax.spines['right'].set_color('none')  # 去掉右边的边框线
+ax.spines['top'].set_color('none')  # 去掉上边的边框线
+##移动下边边框线，相当于移动 X 轴
+ax.xaxis.set_ticks_position('bottom')
+ax.spines['bottom'].set_position(('data', 5))
+
+
+##设置x, y 轴的刻度标签值
+plt.xticks([-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6])
+plt.yticks([-5,-4,-3,-2,-1,0,1,2,3,4,5])
+
+##设置网格线
+plt.grid(True)
+
+
+##图像的最大范围
+plt.rcParams['figure.figsize'] = (15, 8) 
+
+
+
 
