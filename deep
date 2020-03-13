@@ -1,0 +1,150 @@
+#This file is used for image deep learning.
+import os
+import cv2
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+import torch
+import torch.nn as nn
+from torch.autograd import Variable
+
+from torch.utils.data import DataLoader
+import torchvision.datasets as dsets
+import torchvision.transforms as transforms
+
+def train_datasets():
+    batch_size =100
+    train_dataset = dsets.MNIST(root = 'D:/ProgramDoc/PyCharmProgram/FEM/data/pymnist',
+                               train  = True,
+                               transform = transforms.ToTensor(),
+                               download = False)
+
+    train_loader = torch.utils.data.DataLoader(dataset= train_dataset,
+                                              batch_size = batch_size,
+                                              shuffle= True)
+    print(train_dataset.data.size())
+    print(train_loader[0:10])
+    # for i, (images, labels) in enumerate(train_loader[0:10]):
+    #     print(i)
+    #     print(images)
+    #     print(labels)
+    #     print(train_loader)
+    return train_loader
+
+def test_datasets():
+    batch_size =100
+    test_dataset = dsets.MNIST(root = 'D:/ProgramDoc/PyCharmProgram/FEM/data/pymnist',
+                               train  = False,
+                               transform = transforms.ToTensor(),
+                               download = False)
+
+    test_loader = torch.utils.data.DataLoader(dataset= test_dataset,
+                                              batch_size = batch_size,
+                                              shuffle= True)
+    return test_loader
+
+class Neural_net(nn.Module):
+#Neural_net model
+    def __init__(self, input_num, hidden_num, output_num):
+    #input/hidden/output layer feature dimension
+        super(Neural_net,self).__init__()
+        #此步骤是官方要求
+        self.layer1 = nn.Linear(input_num, hidden_num)
+        #设置输入层到隐藏层的函数
+        self.layer2 = nn.Linear(hidden_num, output_num)
+        #设置隐藏层到输出层的函数
+
+    def forward(self,x):
+        #定义前向传播函数
+        out = self.layer1(x)
+        #print('layer1',out)
+        out = torch.relu(out)
+        #print(out)
+        out = self.layer2(out)
+        #print('layer2',out)
+        return out
+
+def training(train_loader, net):
+    learning_rate = 1e-1
+    epoches_num = 1
+    criterion = nn.CrossEntropyLoss()
+    print(criterion)
+    optimizer = torch.optim.SGD(net.parameters(), lr = learning_rate)
+    print(optimizer)
+    for epoch in range(epoches_num):
+        print('epoch= %d',epoch)
+        for i, (images, labels) in enumerate(train_loader):
+            images = Variable(images.view(-1, 28*28))
+            print(images.view(-1, 28*28))
+            print('images', images)
+            labels = Variable(labels)
+            print('labels',labels)
+            outputs = net(images)
+            print(outputs)
+            loss = criterion(outputs, labels)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            if i % 100 == 0:
+                print('loss=%.5f' % loss.item())
+    print('finished training')
+
+def run(case_name):
+    fem_data_df = pd.read_csv('data/' + case_name + '.csv')
+    fem_data = fem_data_df[['id', 'label', 'x', 'y', 'value']]
+    img_path = 'data/' + case_name
+
+    img_BGR = cv2.imread(img_path+'/1.jpeg')
+    #img_RGB = cv2.cvtColor(img_BGR, cv2.COLOR_BGR2RGB)
+    img = cv2.cvtColor(img_BGR, cv2.COLOR_BGR2GRAY)
+    plt.imshow(img)
+    plt.show()
+    print(img.size)
+    print(img.dtype)
+    print(img.shape)
+    print(img)
+
+class fem_dataset(torch.utils.data.Dataset):
+    # 参数预定义
+    def __init__(self, case_name, transforms=None):
+        fem_data_df = pd.read_csv('data/' + case_name + '.csv')
+        fem_data = fem_data_df[['id', 'label', 'x', 'y', 'value']]
+        img_id = np.array(fem_data['id'].tolist() )
+        format  = 'data/' + case_name + '/' + x + '.jpeg'
+        fem_data['path'] = fem_data['id'] + '.jpeg'
+        print(fem_data)
+        self.paths = fem_data['path'].tolist()
+        self.labels = fem_data['label'].tolist()
+        self.transforms = transforms
+    # 返回图片个数
+    def __len__(self):
+        return len(self.paths)
+    # 获取每个图片
+    def __getitem__(self, item):
+        img_path =self.paths[item]
+        img_id =img_path.split("/")[-1]
+        img =cv2.imread(img_path)
+        img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+        if self.transforms is not None:
+            img = self.transforms(img)
+        label = self.labels[item]
+        return torch.from_numpy(img).float(), int(label)
+
+    def f(x):
+
+
+if __name__ == "__main__":
+    input_num = 784
+    hidden_num = 2
+    output_num = 10
+    net = Neural_net(input_num, hidden_num, output_num)
+    #print(net)
+    #train_loader = train_datasets()
+    #training(train_loader, net)
+    #print(train_loader)
+
+    #run(case_name)
+    fem =  fem_dataset(case_name)
+    print(fem)
